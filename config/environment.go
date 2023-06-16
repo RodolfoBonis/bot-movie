@@ -40,10 +40,6 @@ func EnvJonasID() string {
 	return GetEnv("JONAS_ID", "")
 }
 
-func EnvTimeZone() string {
-	return GetEnv("TIME_ZONE", "America/Sao_Paulo")
-}
-
 func LoadEnvVars() {
 	env := GetEnv("BOT_ENV", "development")
 

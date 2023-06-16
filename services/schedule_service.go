@@ -2,19 +2,12 @@ package services
 
 import (
 	"fmt"
-	"github.com/RodolfoBonis/bot_movie/config"
 	"github.com/RodolfoBonis/bot_movie/utils"
-	log "github.com/sirupsen/logrus"
 	"time"
 )
 
 func ScheduleBotRoutine() {
-	location, err := time.LoadLocation(config.EnvTimeZone())
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	scheduledHour := time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), 21, 52, 0, 0, location)
+	scheduledHour := time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), 21, 52, 0, 0, time.Local)
 	go func(hour time.Time) {
 		for {
 			agora := time.Now()
