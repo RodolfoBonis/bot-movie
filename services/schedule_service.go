@@ -2,13 +2,14 @@ package services
 
 import (
 	"fmt"
+	"github.com/RodolfoBonis/bot_movie/config"
 	"github.com/RodolfoBonis/bot_movie/utils"
 	log "github.com/sirupsen/logrus"
 	"time"
 )
 
 func ScheduleBotRoutine() {
-	location, err := time.LoadLocation("America/Maceio")
+	location, err := time.LoadLocation(config.EnvTimeZone())
 	if err != nil {
 		log.Fatal(err)
 	}
