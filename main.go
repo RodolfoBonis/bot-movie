@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/RodolfoBonis/bot_movie/config"
 	"github.com/RodolfoBonis/bot_movie/services"
 	"log"
@@ -52,9 +51,5 @@ func saveFirstTimeData() {
 	}
 
 	file := services.CreateFile()
-	writeResult := services.WriteFileData(file, jsonData)
-
-	if writeResult {
-		fmt.Println("File Writed with success")
-	}
+	services.WriteFileData(file, jsonData)
 }
