@@ -13,8 +13,8 @@ COPY . ./
 
 FROM alpine:3.15
 
-WORKDIR /go/src/github.com/RodolfoBonis/bot_movie/
+WORKDIR /app
 
-COPY --from=build-env /go/src/github.com/RodolfoBonis/bot_movie /
+COPY --from=build-env /go/src/github.com/RodolfoBonis/bot_movie /app/
 
-CMD ["/bot_movie"]
+CMD ["/app/bot_movie"]
