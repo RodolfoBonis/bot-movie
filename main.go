@@ -51,5 +51,5 @@ func saveFirstTimeData() {
 	}
 
 	file := services.CreateFile()
-	services.WriteFileData(file, jsonData)
+	services.WriteFileData("listUsers.json", file, jsonData)
 }

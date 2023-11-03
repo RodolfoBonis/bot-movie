@@ -12,7 +12,7 @@ func ScheduleBotRoutine() {
 		for {
 			agora := time.Now()
 			if agora.Weekday() == time.Wednesday && agora.Hour() == hour.Hour() && agora.Minute() == hour.Minute() {
-				data := ReadFileData()
+				data := ReadFileData("listUsers.json")
 
 				message := GetMessage(data)
 
@@ -20,7 +20,7 @@ func ScheduleBotRoutine() {
 
 				reorderedData := utils.ReorderList(data)
 
-				result := WriteFileData(nil, reorderedData)
+				result := WriteFileData("listUsers.json", nil, reorderedData)
 				if result {
 					fmt.Println("List reordered with success")
 				}

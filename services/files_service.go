@@ -6,9 +6,7 @@ import (
 	"os"
 )
 
-var fileName = "listUsers.json"
-
-func ReadFileData() map[string][]string {
+func ReadFileData(fileName string) map[string][]string {
 	file, err := os.ReadFile(fileName)
 
 	if err != nil {
@@ -21,7 +19,7 @@ func ReadFileData() map[string][]string {
 	return jsonList
 }
 
-func WriteFileData(file *os.File, data []byte) bool {
+func WriteFileData(fileName string, file *os.File, data []byte) bool {
 	if file == nil {
 		var err error
 		file, err = os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, os.ModeAppend)

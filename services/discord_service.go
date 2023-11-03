@@ -6,6 +6,7 @@ import (
 	"github.com/RodolfoBonis/bot_movie/utils"
 	"github.com/bwmarrin/discordgo"
 	log "github.com/sirupsen/logrus"
+	"strings"
 )
 
 var Session *discordgo.Session
@@ -42,7 +43,7 @@ func startCommandsHandler() {
 
 	commandHandlers := map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 		"selector-movie": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
-			data := ReadFileData()
+			data := ReadFileData("listUsers.json")
 			message := GetMessage(data)
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
@@ -52,10 +53,15 @@ func startCommandsHandler() {
 			})
 			reorderedData := utils.ReorderList(data)
 
-			result := WriteFileData(nil, reorderedData)
+			result := WriteFileData("listUsers.json", nil, reorderedData)
 			if result {
 				fmt.Println("List reordered with success")
 			}
+		},
+		"search-course": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+			args := strings.Fields(i.Message.Content)
+
+			fmt.Println(args)
 		},
 	}
 
@@ -73,6 +79,24 @@ func startCommandsHandler() {
 			h(s, i)
 		}
 	})
+}
+
+func getCoursesList() {
+	//file, err := os.Open("courses.json")
+	//if err != nil {
+	//	fmt.Println("Erro ao abrir o arquivo JSON:", err)
+	//	return
+	//}
+	//defer file.Close()
+	//
+	//var data []entities.CoursesData
+	//decoder := json.NewDecoder(file)
+	//if err := decoder.Decode(&data); err != nil {
+	//	fmt.Println("Erro ao decodificar o JSON:", err)
+	//	return
+	//}
+	//
+	//searchIndex := make(map[string][]entities.CoursesData)
 }
 
 func SendMessage(message string) {

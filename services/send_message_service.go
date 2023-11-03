@@ -4,7 +4,7 @@ import "fmt"
 
 func GetMessage(jsonList map[string][]string) string {
 	if jsonList == nil {
-		data := ReadFileData()
+		data := ReadFileData("listUsers.json")
 		jsonList = data
 	}
 
