@@ -97,14 +97,10 @@ func startCommandsHandler() {
 
 				for _, item := range courses {
 					output := fmt.Sprintf(" %s", item.Name)
-					links := ""
-					for _, link := range item.Links {
-						links += fmt.Sprintf("%s: %s\n", link.Name, link.Link)
-					}
 
 					embed := &discordgo.MessageEmbed{
 						Title:       output,
-						Description: links,
+						Description: item.Link,
 					}
 
 					_, err := s.ChannelMessageSendEmbed(userChannel.ID, embed)
